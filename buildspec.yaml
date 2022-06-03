@@ -1,25 +1,33 @@
 version: 0.2
 
-run-as: root
+
 
 phases:
   install:
-    run-as: root
+    runtime-versions:
+      java: corretto11
   pre_build:
-    run-as: root
+    
     on-failure: ABORT
     commands:
       - echo 'pre build'
   build:
-    run-as: root
+    
     on-failure: ABORT
     commands:
       - mvn clean install
+      - mvn surefire-report:report
+      - mvn package
   post_build:
-    run-as: root
+    
     on-failure: ABORT
     commands:
       - echo 'complete'
+reports:
+  SurefireReports:
+    files:
+      - '**/*'
+    base-directory: 'target/surefire-reports'
 artifacts:
   files:
     - 'target/*.jar'
