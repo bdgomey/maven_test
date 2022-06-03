@@ -22,5 +22,5 @@ phases:
       - echo 'complete'
 artifacts:
   files:
-    - '**/*'
+    - 'target/*.jar'
   name: java_jar
