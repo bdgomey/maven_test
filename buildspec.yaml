@@ -10,7 +10,6 @@ phases:
     on-failure: ABORT
     commands:
       - echo 'pre build'
-      - command
   build:
     run-as: root
     on-failure: ABORT
@@ -23,5 +22,5 @@ phases:
       - echo 'complete'
 artifacts:
   files:
-    - *.jar
+    - '**/*'
   name: java_jar
