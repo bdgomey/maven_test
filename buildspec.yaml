@@ -1,0 +1,27 @@
+version: 0.2
+
+run-as: root
+
+phases:
+  install:
+    run-as: root
+  pre_build:
+    run-as: root
+    on-failure: ABORT
+    commands:
+      - echo 'pre build'
+      - command
+  build:
+    run-as: root
+    on-failure: ABORT
+    commands:
+      - mvn clean install
+  post_build:
+    run-as: root
+    on-failure: ABORT
+    commands:
+      - echo 'complete'
+artifacts:
+  files:
+    - *.jar
+  name: java_jar
